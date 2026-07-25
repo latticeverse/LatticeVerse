@@ -54,14 +54,14 @@ This map also captures the historical progression of the work:
 | 2021 · [C&G](https://www.sciencedirect.com/journal/computers-and-graphics) | **AH / MPP** | The deterministic reference layer: asymptotic homogenization plus mechanical-property profiles covering stiffness, strength, directional response, and worst-case stress. | [Paper](https://doi.org/10.1016/j.cag.2021.07.021) · integration planned |
 | 2022 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PH-Net** | A label-free 3D CNN that predicts microscopic displacement fields for general parallelepiped cells and derives homogenized and local properties from them. | [Paper](https://doi.org/10.1016/j.addma.2022.103237) · [Code](https://github.com/xing-yuu/phnet) |
 | 2025 · [arXiv](https://arxiv.org/) | **CGiNS** | A sparse, periodic, multilevel neural solver informed by preconditioned conjugate-gradient iterations for physically consistent homogenization up to high resolutions. | [Paper](https://arxiv.org/abs/2506.17087) · integration planned |
-| 2026 · [SIGGRAPH](https://s2026.siggraph.org/) | **GMT** | A Geometric Multigrid Transformer that aligns sparse Point Transformer blocks with multigrid hierarchies for high-fidelity elastic and thermal homogenization. | [Paper](https://arxiv.org/abs/2604.26518) · [Code](https://github.com/xing-yuu/GMT) |
+| 2026&nbsp;·&nbsp;[SIGGRAPH](https://s2026.siggraph.org/) | **GMT** | A Geometric Multigrid Transformer that aligns sparse Point Transformer blocks with multigrid hierarchies for high-fidelity elastic and thermal homogenization. | [Paper](https://arxiv.org/abs/2604.26518) · [Code](https://github.com/xing-yuu/GMT) |
 
 ### Inverse design, manufacturing, and applications
 
 | Year / Venue | Project | What it contributes | Resources |
 |:-----|---|---|---|
 | 2025 · [C&S](https://www.sciencedirect.com/journal/computers-and-structures) | **Energy-absorbing PPL** | An application-oriented pipeline combining nonlinear simulation, an MLP surrogate, and NSGA-II to balance specific energy absorption and peak crushing force. | [Paper](https://doi.org/10.1016/j.compstruc.2025.107880) · integration planned |
-| 2025 · [SIGGRAPH](https://s2025.siggraph.org/) | **MIND** | A latent-diffusion inverse-design model using a symmetry-aware Holoplane representation to jointly encode geometry and physical response across lattice classes. | [Paper](https://doi.org/10.1145/3721238.3730682) · [Code](https://github.com/TimHsue/MIND) |
+| 2025&nbsp;·&nbsp;[SIGGRAPH](https://s2025.siggraph.org/) | **MIND** | A latent-diffusion inverse-design model using a symmetry-aware Holoplane representation to jointly encode geometry and physical response across lattice classes. | [Paper](https://doi.org/10.1145/3721238.3730682) · [Code](https://github.com/TimHsue/MIND) |
 | 2026 · [ICML](https://icml.cc/Conferences/2026) | **AutoMS** | A multi-agent neuro-symbolic system with simulation-aware evolutionary search for cross-physics inverse microstructure design. | [Paper](https://arxiv.org/abs/2603.27195) · integration planned |
 | 2026 · arXiv | **MO-IHD** | Manufacturing-constrained inverse homogenization with differentiable overhang, enclosed-cavity, and powder-removal constraints, plus progressive Pareto-front construction. | manuscript forthcoming · integration planned |
 
