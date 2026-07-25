@@ -1,8 +1,8 @@
 <div align="center">
 
-# LatticeVerse
+  <img src="assert/logo.png" alt="LatticeVerse" width="420">
 
-**A unified codebase for computational lattice modeling, physics simulation, inverse design, and manufacturing-aware optimization.**
+  <p><strong>A unified codebase for computational lattice modeling, physics simulation, inverse design, and manufacturing-aware optimization.</strong></p>
 
 [Research Map](#research-map) · [Project Zoo](#project-zoo) · [Repository Layout](#repository-layout) · [Integration Contract](#integration-contract)
 
