@@ -8,8 +8,6 @@
 
 </div>
 
-> [!NOTE]
-> LatticeVerse is currently being consolidated from a collection of research codebases. The papers and verified standalone repositories are indexed below; a unified installation will accompany the first tagged release.
 
 ## Overview
 
@@ -43,7 +41,7 @@ This map also captures the historical progression of the work:
 |:-----|---|---|---|
 | 2022&nbsp;·&nbsp;[AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PSL** | A skeleton-driven parametric shell representation with controllable topology and morphology; integrates with shape optimization for tailored elastic properties. | [Paper](https://doi.org/10.1016/j.addma.2022.103258) [Code](https://github.com/latticeverse/ParametricShellLattice) |
 | 2023 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PPL** | A unified parametric plate-lattice representation with direct quadrilateral meshing and level-set shape optimization. | [Paper](https://doi.org/10.1016/j.addma.2023.103626) · integration planned |
-| 2023 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **TPMS-like** | New shell-lattice families obtained from parametric periodic boundaries and minimal-surface c onstruction, extending the property space beyond classical TPMS formulas. | [Paper](https://doi.org/10.1016/j.addma.2023.103779) · integration planned |
+| 2023 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **TPMS-like** | New shell-lattice families obtained from parametric periodic boundaries and minimal-surface c onstruction, extending the property space beyond classical TPMS formulas. | [Paper](https://doi.org/10.1016/j.addma.2023.103779) [Code](https://github.com/latticeverse/TPMS-Like) |
 | 2025 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **SPPM** | Fabricable stochastic periodic porous microstructures built with Wang-cube rules and Gaussian kernels, balancing global randomness with periodic connectivity. | [Paper](https://doi.org/10.1016/j.addma.2025.104739) · integration planned |
 | 2025&nbsp;·&nbsp;[M&D](https://www.sciencedirect.com/journal/materials-and-design) | **PETL** | Parametric joint-enhanced truss lattices that redistribute material around joints to reduce stress concentrations and improve strength and stiffness. | [Paper](https://doi.org/10.1016/j.matdes.2025.113969) · integration planned |
 
