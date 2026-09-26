@@ -4,7 +4,7 @@
 
   <p><strong>A unified research map and integration layer for computational lattice modeling, physics simulation, inverse design, and manufacturing-aware optimization.</strong></p>
 
-[Research map](#how-to-read-the-research-map) · [Projects](#1-geometry-modeling) · [Data contract](#shared-data-contract) · [Citations](#citation)
+[中文](README.zh-CN.md) · [Research map](#how-to-read-the-research-map) · [Projects](#1-geometry-modeling) · [Lattice dataset](#2-lattice-dataset) · [Citations](#citation)
 
 </div>
 
@@ -34,7 +34,6 @@ Unless a project is marked as integrated, this repository does not contain its f
 
 The map is read from left to right. Geometry Modeling produces parameterized lattice cells, which are organized into the Lattice Dataset. Physics Simulation computes local fields and effective properties, while Evaluation checks solver accuracy and candidate performance. These results provide the training and optimization inputs for three downstream branches: property-driven inverse design, application-oriented optimization, and manufacturing optimization. Accepted candidates can be verified, recorded, and fed back into the dataset for further expansion.
 
-The arrows describe data movement rather than a publication timeline:
 
 - Geometry Modeling supplies parameter values, canonical cell representations, and meshes or voxel references.
 - Dataset Construction turns those outputs into reproducible samples with manifests, splits, and provenance.
@@ -56,7 +55,7 @@ These projects define the controllable design space that enters the lattice data
 
 ## 2. Lattice Dataset
 
-The dataset layer connects geometry to the labels and metadata required by simulation, learning, and optimization. It should be released through manifests and reproducible preprocessing steps rather than undocumented binary dumps.
+The dataset layer connects geometry to the labels and metadata required by simulation, learning, and optimization.
 
 | Dataset node | Role in the pipeline | Inputs | Outputs / resources |
 |:--|:--|:--|:--|
@@ -73,7 +72,7 @@ Simulation is the source of physical fields and effective properties. Evaluation
 |:--|:--|:--|:--|
 | 2021 · [C&G](https://www.sciencedirect.com/journal/computers-and-graphics) | **Asymptotic Homogenization / Mechanical Property Profiles (AH / MPP)** | A deterministic reference layer for local fields, effective elastic properties, directional response, strength-related profiles, and worst-case stress under explicit boundary and material conventions. | [Paper](https://doi.org/10.1016/j.cag.2021.07.021) · [Code](https://github.com/latticeverse/AsymptoticHomogenization) · [Citation](docs/citations/ah-mpp.bib) |
 | 2022 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PH-Net** | A label-free 3D CNN that predicts microscopic displacement fields for general parallelepiped cells and derives local and homogenized properties from them. | [Paper](https://doi.org/10.1016/j.addma.2022.103237) · [Code](https://github.com/latticeverse/phnet) · [Citation](docs/citations/ph-net.bib) |
-| 2025 · [arXiv](https://arxiv.org/abs/2506.17087) | **SLASH / CGINS** | A PCG-informed sparse and periodic neural solver with multilevel structure for physically consistent homogenization at high resolutions. The linked preprint uses the name CGINS. | [Paper](https://arxiv.org/abs/2506.17087) · [Citation](docs/citations/slash.bib) · integration planned |
+| 2025 · [arXiv](https://arxiv.org/abs/2506.17087) | **SLASH / CGINS** | A PCG-informed sparse and periodic neural solver with multilevel structure for physically consistent homogenization at high resolutions. | [Paper](https://arxiv.org/abs/2506.17087) · [Citation](docs/citations/slash.bib) · integration planned |
 | 2026 · [SIGGRAPH](https://s2026.siggraph.org/) | **GMT** | A geometric multigrid transformer that aligns sparse point-transformer blocks with multigrid hierarchies for high-fidelity elastic and thermal homogenization. | [Paper](https://arxiv.org/abs/2604.26518) · [Code](https://github.com/latticeverse/GMT) · [Citation](docs/citations/gmt.bib) |
 
 For every solver, the evaluation record should include units, coordinate conventions, tensor ordering, boundary conditions, discretization, solver tolerance, field errors, and effective-property errors. A generated candidate is accepted only after its claims are checked through the same evaluation contract.
@@ -108,39 +107,6 @@ This branch starts from an application objective and a high-fidelity simulation 
 
 The output is a manufacturable Pareto set with physical objectives and build-feasibility records, ready for mesh export, fabrication, and experimental validation. Manufacturing constraints are part of the optimization specification rather than a final repair step.
 
-## Shared Data Contract
-
-Every sample should have a versioned manifest with four groups of fields:
-
-| Group | Minimum contents |
-|:--|:--|
-| Geometry | Family and parameter values; cell basis; periodicity; SDF or voxel reference; surface or volume mesh reference; volume fraction. |
-| Physics | Base material; governing physics; boundary conditions; discretization; local displacement, stress, flux, or temperature fields; homogenized tensors; solver tolerance. |
-| Design | Target properties; objective and constraint definitions; optimization history; random seed; parent and provenance identifiers. |
-| Manufacturing | Process and build direction; minimum feature size; overhang score; cavity and powder-removal checks; export settings. |
-
-Raw datasets and checkpoints belong in versioned external releases. This repository should contain schemas, download manifests, checksums, preprocessing code, and small test fixtures.
-
-## Integration Contract
-
-Each integrated project must provide:
-
-- a project README with paper, citation, license, and tested environment;
-- configuration files for every reported benchmark;
-- an adapter to the unified geometry and sample manifests;
-- one lightweight smoke test and, where required, one GPU regression test;
-- checkpoint and dataset manifests with checksums;
-- a minimal inference or optimization example with deterministic output;
-- explicit units, coordinate conventions, tensor ordering, and boundary conditions.
-
-## Roadmap
-
-- [ ] **Foundation:** freeze schemas, coordinate conventions, units, and asymptotic-homogenization baselines.
-- [ ] **Geometry:** integrate PPL, PSL, TPMS-like, and SPPM generators behind a common API.
-- [ ] **Dataset:** publish versioned manifests, split definitions, checksums, and benchmark fixtures.
-- [ ] **Solvers:** migrate PH-Net, SLASH / CGINS, and GMT with shared preprocessing and evaluation.
-- [ ] **Design:** connect MIND, AutoMS, and MO-IHD to the same target and constraint specification.
-- [ ] **Applications:** release reproducible energy-absorption, PETL, and multiscale design examples.
 
 ## Citation
 
