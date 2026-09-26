@@ -49,7 +49,7 @@ This map also captures the historical progression of the work:
 
 | Year / Venue | Project | What it contributes | Resources |
 |:-----|---|---|---|
-| 2021 · [C&G](https://www.sciencedirect.com/journal/computers-and-graphics) | **AH / MPP** | The deterministic reference layer: asymptotic homogenization plus mechanical-property profiles covering stiffness, strength, directional response, and worst-case stress. | [Paper](https://doi.org/10.1016/j.cag.2021.07.021) · integration planned |
+| 2021 · [C&G](https://www.sciencedirect.com/journal/computers-and-graphics) | **AH / MPP** | The deterministic reference layer: asymptotic homogenization plus mechanical-property profiles covering stiffness, strength, directional response, and worst-case stress. | [Paper](https://doi.org/10.1016/j.cag.2021.07.021) · [Code](https://github.com/latticeverse/AsymptoticHomogenization) |
 | 2022 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PH-Net** | A label-free 3D CNN that predicts microscopic displacement fields for general parallelepiped cells and derives homogenized and local properties from them. | [Paper](https://doi.org/10.1016/j.addma.2022.103237) · [Code](https://github.com/latticeverse/phnet) |
 | 2025 · | **SLASH** | A sparse, periodic, multilevel neural solver informed by preconditioned conjugate-gradient iterations for physically consistent homogenization up to high resolutions. | [Paper](https://arxiv.org/abs/2506.17087) · integration planned |
 | 2026&nbsp;·&nbsp;[SIGGRAPH](https://s2026.siggraph.org/) | **GMT** | A Geometric Multigrid Transformer that aligns sparse Point Transformer blocks with multigrid hierarchies for high-fidelity elastic and thermal homogenization. | [Paper](https://arxiv.org/abs/2604.26518) · [Code](https://github.com/latticeverse/GMT) |
@@ -102,38 +102,6 @@ Every sample should have a versioned manifest with four groups of fields:
 | Manufacturing | process and build direction; minimum feature size; overhang score; cavity and powder-removal checks; export settings |
 
 Raw datasets and checkpoints should be stored in versioned external releases. This repository should contain schemas, download manifests, checksums, preprocessing code, and small test fixtures rather than untracked binary dumps.
-
-## Repository Layout
-
-```text
-LatticeVerse/
-├── latticeverse/                 # Stable, reusable library code
-│   ├── geometry/                 # Parametric families and representations
-│   │   ├── truss/
-│   │   ├── plate/
-│   │   ├── shell/
-│   │   └── porous/
-│   ├── physics/                  # AH, assembly, boundary conditions, solvers
-│   ├── design/                   # Optimization, generation, and search
-│   ├── manufacturing/            # AM constraints and export checks
-│   ├── data/                     # Schemas, adapters, and transforms
-│   └── evaluation/               # Common metrics and benchmarks
-├── projects/                     # Paper-specific implementations
-│   ├── phnet/
-│   ├── cgins/
-│   ├── gmt/
-│   ├── mind/
-│   ├── automs/
-│   └── mo_ihd/
-├── configs/                      # Reproducible experiment configurations
-├── examples/                     # Small end-to-end examples
-├── tools/                        # Training, evaluation, conversion, export
-├── docs/                         # Tutorials, theory notes, and paper pages
-├── tests/                        # Unit, regression, and physics-consistency tests
-└── assets/                       # README figures and lightweight media
-```
-
-Paper-specific code starts under `projects/`. A component is promoted into `latticeverse/` only after its interface, tests, license, and data contract are stable. This prevents the unified repository from becoming a flat collection of incompatible code drops.
 
 ## Integration Contract
 
