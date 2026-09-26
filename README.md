@@ -2,106 +2,124 @@
 
   <img src="assets/logo.png" alt="LatticeVerse" width="350">
 
-  <p><strong>A unified codebase for computational lattice modeling, physics simulation, inverse design, and manufacturing-aware optimization.</strong></p>
+  <p><strong>A unified research map and integration layer for computational lattice modeling, physics simulation, inverse design, and manufacturing-aware optimization.</strong></p>
 
-[Research Map](#research-map) · [Project Zoo](#project-zoo) · [Repository Layout](#repository-layout) · [Integration Contract](#integration-contract)
+[Research map](#how-to-read-the-research-map) · [Projects](#1-geometry-modeling) · [Data contract](#shared-data-contract) · [Citations](#citation)
 
 </div>
 
+## What this repository is
 
-## Overview
+LatticeVerse is an umbrella repository for a family of lattice-design papers and their implementations. It documents how the projects connect, defines shared data and integration conventions, and links to the standalone repositories that contain the executable research code.
 
-LatticeVerse connects four parts of the lattice-design workflow that are often developed in isolation:
+The repository follows one end-to-end path:
 
-1. **Geometry** — compact, controllable families of truss, plate, shell, TPMS-like, and stochastic porous lattices.
-2. **Physics** — homogenization and learned numerical solvers that recover effective properties and local physical fields.
-3. **Design** — property-conditioned generation, multi-objective optimization, and agentic search.
-4. **Deployment** — manufacturability constraints, application-specific objectives, and simulation/experiment validation.
+```text
+geometry modeling
+  -> lattice dataset
+  -> physics simulation and evaluation
+  -> generation and optimization
+  -> verification, manufacturing, and dataset expansion
+```
 
-The central abstraction is not a particular network or geometry family. It is a shared **lattice data layer** that allows any generator, simulator, or optimizer to exchange geometry, material, field, property, and manufacturing information through stable schemas.
+The common unit of exchange is a versioned lattice sample. A sample carries its geometry, material, physical fields, effective properties, design targets, optimization provenance, and manufacturing checks. This lets a generator propose a structure, a solver evaluate it, and a downstream application reproduce the decision.
 
-## Research Map
+Unless a project is marked as integrated, this repository does not contain its full implementation. Use the linked project repository, release, or paper for the authoritative code and experimental details.
+
+## How to read the research map
 
 <p align="center">
-  <img src="assets/pipeline.svg" width="100%" alt="LatticeVerse research pipeline: lattice modeling, datasets, simulation, generation, optimization, and manufacturing-aware applications">
+  <img src="assets/pipeline.svg" width="100%" alt="LatticeVerse research pipeline: geometry modeling, lattice dataset, physics simulation and evaluation, generation and optimization, and manufacturing-aware applications">
 </p>
 
-This map also captures the historical progression of the work:
+The map is read from left to right. Geometry Modeling produces parameterized lattice cells, which are organized into the Lattice Dataset. Physics Simulation computes local fields and effective properties, while Evaluation checks solver accuracy and candidate performance. These results provide the training and optimization inputs for three downstream branches: property-driven inverse design, application-oriented optimization, and manufacturing optimization. Accepted candidates can be verified, recorded, and fed back into the dataset for further expansion.
 
-- **2021–2022:** establish a trustworthy homogenization baseline, then learn displacement fields with PH-Net.
-- **2022–2023:** expand the design space through parametric shell, plate, and TPMS-like families.
-- **2025:** move toward application-specific optimization, stochastic/fabricable geometry, high-resolution solvers, and generative inverse design.
-- **2026:** couple numerical rigor with transformers, multi-agent search, cross-physics objectives, and differentiable manufacturing constraints.
+The arrows describe data movement rather than a publication timeline:
 
-## Project Zoo
+- Geometry Modeling supplies parameter values, canonical cell representations, and meshes or voxel references.
+- Dataset Construction turns those outputs into reproducible samples with manifests, splits, and provenance.
+- Simulation produces local displacement, stress, flux, or temperature fields together with effective properties.
+- Evaluation compares numerical and learned solvers, checks physical consistency, and ranks generated candidates.
+- Generation & Optimization consumes targets, constraints, and evaluated samples to produce new candidates.
+- Verified candidates return to the dataset with their solver results, objectives, constraints, and manufacturing status.
 
-### Geometry and parametric modeling
+## 1. Geometry Modeling
 
-| Year / Venue | Project | What it contributes | Resources |
-|:-----|---|---|---|
-| 2022&nbsp;·&nbsp;[AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PSL** | A skeleton-driven parametric shell representation with controllable topology and morphology; integrates with shape optimization for tailored elastic properties. | [Paper](https://doi.org/10.1016/j.addma.2022.103258) · [Code](https://github.com/latticeverse/ParametricShellLattice) |
-| 2023 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PPL** | A unified parametric plate-lattice representation with direct quadrilateral meshing and level-set shape optimization. | [Paper](https://doi.org/10.1016/j.addma.2023.103626) · integration planned |
-| 2023 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **TPMS-like** | New shell-lattice families obtained from parametric periodic boundaries and minimal-surface c onstruction, extending the property space beyond classical TPMS formulas. | [Paper](https://doi.org/10.1016/j.addma.2023.103779) · [Code](https://github.com/latticeverse/TPMS-Like) |
-| 2025 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **SPPM** | Fabricable stochastic periodic porous microstructures built with Wang-cube rules and Gaussian kernels, balancing global randomness with periodic connectivity. | [Paper](https://doi.org/10.1016/j.addma.2025.104739) · integration planned |
-| 2025&nbsp;·&nbsp;[M&D](https://www.sciencedirect.com/journal/materials-and-design) | **PETL** | Parametric joint-enhanced truss lattices that redistribute material around joints to reduce stress concentrations and improve strength and stiffness. | [Paper](https://doi.org/10.1016/j.matdes.2025.113969) · integration planned |
-
-### Physics and homogenization
+These projects define the controllable design space that enters the lattice dataset. Each adapter should export a canonical geometry representation and retain the parameters needed to regenerate it.
 
 | Year / Venue | Project | What it contributes | Resources |
-|:-----|---|---|---|
-| 2021 · [C&G](https://www.sciencedirect.com/journal/computers-and-graphics) | **AH / MPP** | The deterministic reference layer: asymptotic homogenization plus mechanical-property profiles covering stiffness, strength, directional response, and worst-case stress. | [Paper](https://doi.org/10.1016/j.cag.2021.07.021) · [Code](https://github.com/latticeverse/AsymptoticHomogenization) |
-| 2022 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PH-Net** | A label-free 3D CNN that predicts microscopic displacement fields for general parallelepiped cells and derives homogenized and local properties from them. | [Paper](https://doi.org/10.1016/j.addma.2022.103237) · [Code](https://github.com/latticeverse/phnet) |
-| 2025 · | **SLASH** | A sparse, periodic, multilevel neural solver informed by preconditioned conjugate-gradient iterations for physically consistent homogenization up to high resolutions. | [Paper](https://arxiv.org/abs/2506.17087) · integration planned |
-| 2026&nbsp;·&nbsp;[SIGGRAPH](https://s2026.siggraph.org/) | **GMT** | A Geometric Multigrid Transformer that aligns sparse Point Transformer blocks with multigrid hierarchies for high-fidelity elastic and thermal homogenization. | [Paper](https://arxiv.org/abs/2604.26518) · [Code](https://github.com/latticeverse/GMT) |
+|:--|:--|:--|:--|
+| 2023 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PPL** | A unified parametric plate-lattice representation with direct quadrilateral meshing and level-set shape optimization for tailored mechanical properties. | [Paper](https://doi.org/10.1016/j.addma.2023.103626) · [Citation](docs/citations/ppl.bib) · integration planned |
+| 2022 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PSL** | A skeleton-driven parametric shell representation with controllable topology and morphology, coupled to shape optimization for tailored elastic properties. | [Paper](https://doi.org/10.1016/j.addma.2022.103258) · [Code](https://github.com/latticeverse/ParametricShellLattice) · [Citation](docs/citations/psl.bib) |
+| 2023 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **TPMS-like shell lattices** | Parametric shell-lattice families built from periodic boundaries and minimal-surface-like constructions, extending the accessible property space beyond classical TPMS formulas. | [Paper](https://doi.org/10.1016/j.addma.2023.103779) · [Code](https://github.com/latticeverse/TPMS-Like) · [Citation](docs/citations/tpms-like.bib) |
+| 2025 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **SPPM** | Fabricable stochastic periodic porous microstructures generated with Wang-cube rules and Gaussian kernels, balancing randomness with periodic connectivity. | [Paper](https://doi.org/10.1016/j.addma.2025.104739) · [Citation](docs/citations/sppm.bib) · integration planned |
 
-### Inverse design, manufacturing, and applications
+## 2. Lattice Dataset
+
+The dataset layer connects geometry to the labels and metadata required by simulation, learning, and optimization. It should be released through manifests and reproducible preprocessing steps rather than undocumented binary dumps.
+
+| Dataset node | Role in the pipeline | Inputs | Outputs / resources |
+|:--|:--|:--|:--|
+| **Dataset Construction** | Converts generated cells into canonical, versioned samples. | Geometry parameters, cell basis, material and process metadata. | Geometry assets, sample manifest, provenance, split metadata; schema integration planned. |
+| **Training and Benchmarks** | Builds comparable training and evaluation splits for generators and solvers. | Canonical samples, solver labels, target properties, and fixed random seeds. | Train/validation/test manifests, benchmark metrics, checksums, and evaluation configurations. |
+
+This layer receives samples from Geometry Modeling and provides inputs to Physics Simulation, Evaluation, and the three optimization branches. Verified candidates return through `Dataset expansion & optimization` with their fields, properties, objectives, constraints, and manufacturing status. Dataset nodes are workflow components rather than standalone papers; cite the upstream geometry and solver papers that produced the samples.
+
+## 3. Physics Simulation and Evaluation
+
+Simulation is the source of physical fields and effective properties. Evaluation checks whether numerical solvers, learned surrogates, and generated candidates satisfy the same physical and numerical conventions.
 
 | Year / Venue | Project | What it contributes | Resources |
-|:-----|---|---|---|
-| 2025 · [C&S](https://www.sciencedirect.com/journal/computers-and-structures) | **Energy-absorbing PPL** | An application-oriented pipeline combining nonlinear simulation, an MLP surrogate, and NSGA-II to balance specific energy absorption and peak crushing force. | [Paper](https://doi.org/10.1016/j.compstruc.2025.107880) · integration planned |
-| 2025&nbsp;·&nbsp;[SIGGRAPH](https://s2025.siggraph.org/) | **MIND** | A latent-diffusion inverse-design model using a symmetry-aware Holoplane representation to jointly encode geometry and physical response across lattice classes. | [Paper](https://doi.org/10.1145/3721238.3730682) · [Code](https://github.com/latticeverse/MIND) |
-| 2026 · [ICML](https://icml.cc/Conferences/2026) | **AutoMS** | A multi-agent neuro-symbolic system with simulation-aware evolutionary search for cross-physics inverse microstructure design. | [Paper](https://arxiv.org/abs/2603.27195) · [Code](https://github.com/latticeverse/AutoMS) |
-| 2026  | **MO-IHD** | Manufacturing-constrained inverse homogenization with differentiable overhang, enclosed-cavity, and powder-removal constraints, plus progressive Pareto-front construction. | manuscript forthcoming · integration planned |
+|:--|:--|:--|:--|
+| 2021 · [C&G](https://www.sciencedirect.com/journal/computers-and-graphics) | **Asymptotic Homogenization / Mechanical Property Profiles (AH / MPP)** | A deterministic reference layer for local fields, effective elastic properties, directional response, strength-related profiles, and worst-case stress under explicit boundary and material conventions. | [Paper](https://doi.org/10.1016/j.cag.2021.07.021) · [Code](https://github.com/latticeverse/AsymptoticHomogenization) · [Citation](docs/citations/ah-mpp.bib) |
+| 2022 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PH-Net** | A label-free 3D CNN that predicts microscopic displacement fields for general parallelepiped cells and derives local and homogenized properties from them. | [Paper](https://doi.org/10.1016/j.addma.2022.103237) · [Code](https://github.com/latticeverse/phnet) · [Citation](docs/citations/ph-net.bib) |
+| 2025 · [arXiv](https://arxiv.org/abs/2506.17087) | **SLASH / CGINS** | A PCG-informed sparse and periodic neural solver with multilevel structure for physically consistent homogenization at high resolutions. The linked preprint uses the name CGINS. | [Paper](https://arxiv.org/abs/2506.17087) · [Citation](docs/citations/slash.bib) · integration planned |
+| 2026 · [SIGGRAPH](https://s2026.siggraph.org/) | **GMT** | A geometric multigrid transformer that aligns sparse point-transformer blocks with multigrid hierarchies for high-fidelity elastic and thermal homogenization. | [Paper](https://arxiv.org/abs/2604.26518) · [Code](https://github.com/latticeverse/GMT) · [Citation](docs/citations/gmt.bib) |
 
+For every solver, the evaluation record should include units, coordinate conventions, tensor ordering, boundary conditions, discretization, solver tolerance, field errors, and effective-property errors. A generated candidate is accepted only after its claims are checked through the same evaluation contract.
 
-## End-to-End Workflows
+## 4. Generation & Optimization
 
-### Forward characterization
+The downstream branches use targets, constraints, and evaluated samples to search the design space. Each branch records the target specification, random seed, parent samples, candidate geometry, objective values, and verification results.
 
-`lattice family → canonical geometry → homogenization solver → local fields + effective properties → mechanical-property profile`
+### 4.1 Property-driven Inverse Design
 
-Use this path to compare lattice families under a common material model, boundary convention, discretization, and evaluation protocol.
+| Year / Venue | Project | What it contributes | Resources |
+|:--|:--|:--|:--|
+| 2025 · [SIGGRAPH](https://s2025.siggraph.org/) | **MIND** | A symmetry-aware latent-diffusion model based on Holoplane representations, jointly encoding lattice geometry and physical response to generate candidates for target properties. | [Paper](https://doi.org/10.1145/3721238.3730682) · [Code](https://github.com/latticeverse/MIND) · [Citation](docs/citations/mind.bib) |
+| 2026 · [ICML](https://icml.cc/Conferences/2026) | **AutoMS** | A multi-agent neuro-symbolic system that combines simulation-aware evolutionary search with semantic task decomposition for cross-physics inverse microstructure design. | [Paper](https://arxiv.org/abs/2603.27195) · [Code](https://github.com/latticeverse/AutoMS) · [Citation](docs/citations/automs.bib) |
 
-### Property-driven inverse design
+The input is a target property or a coupled set of physical targets. The output is a diverse set of candidate lattices with predicted properties, provenance, and a verification request for the simulation layer.
 
-`target properties → MIND or AutoMS → CGiNS/GMT verification → ranking and diversity filtering → candidate lattices`
+### 4.2 Application-oriented Optimization
 
-The generator proposes candidates; the solver is the source of physical truth. This separation reduces physical hallucination and makes every result reproducible.
+| Year / Venue | Project | What it contributes | Resources |
+|:--|:--|:--|:--|
+| 2025 · [C&S](https://www.sciencedirect.com/journal/computers-and-structures) | **Energy-absorbing PPL** | An application pipeline that combines nonlinear simulation, an MLP surrogate, and NSGA-II to balance specific energy absorption against peak crushing force. | [Paper](https://doi.org/10.1016/j.compstruc.2025.107880) · [Citation](docs/citations/energy-absorbing-ppl.bib) · integration planned |
+| 2025 · [M&D](https://www.sciencedirect.com/journal/materials-and-design) | **PETL (Joint-Enhanced Truss Lattice)** | A parametric joint-enhancement strategy that redistributes material near truss intersections to reduce stress concentrations and improve stiffness and strength for application loading. | [Paper](https://doi.org/10.1016/j.matdes.2025.113969) · [Citation](docs/citations/petl.bib) · integration planned |
 
-### Manufacturing-aware optimization
+This branch starts from an application objective and a high-fidelity simulation protocol. Surrogate or Pareto search proposes candidates; nonlinear simulation and physical testing determine whether they should enter the verified dataset.
 
-`performance targets + build constraints → MO-IHD → manufacturable Pareto set → mesh/export → experiment`
+### 4.3 Manufacturing Optimization
 
-Manufacturability is represented as an optimization constraint, not as a final repair step.
+| Year / Venue | Project | What it contributes | Resources |
+|:--|:--|:--|:--|
+| 2026 | **MO-IHD** | A manufacturing-constrained inverse-homogenization pipeline with differentiable overhang, enclosed-cavity, and powder-removal constraints, using progressive Pareto-front construction to retain feasible candidates. | Manuscript forthcoming · [Citation](docs/citations/mo-ihd.bib) · integration planned |
 
-### Application-oriented optimization
+The output is a manufacturable Pareto set with physical objectives and build-feasibility records, ready for mesh export, fabrication, and experimental validation. Manufacturing constraints are part of the optimization specification rather than a final repair step.
 
-`parametric family → high-fidelity application simulation → surrogate/Pareto search → fabrication → physical validation`
-
-The energy-absorption study is the first reference pipeline for nonlinear, application-level objectives.
-
-## Unified Data Layer
+## Shared Data Contract
 
 Every sample should have a versioned manifest with four groups of fields:
 
 | Group | Minimum contents |
-|---|---|
-| Geometry | family and parameter values; cell basis; periodicity; SDF/voxel reference; surface or volume mesh reference; volume fraction |
-| Physics | base material; governing physics; boundary conditions; discretization; local displacement/stress/flux fields; homogenized tensors; solver tolerance |
-| Design | target properties; objective and constraint definitions; optimization history; random seed; parent/provenance identifiers |
-| Manufacturing | process and build direction; minimum feature size; overhang score; cavity and powder-removal checks; export settings |
+|:--|:--|
+| Geometry | Family and parameter values; cell basis; periodicity; SDF or voxel reference; surface or volume mesh reference; volume fraction. |
+| Physics | Base material; governing physics; boundary conditions; discretization; local displacement, stress, flux, or temperature fields; homogenized tensors; solver tolerance. |
+| Design | Target properties; objective and constraint definitions; optimization history; random seed; parent and provenance identifiers. |
+| Manufacturing | Process and build direction; minimum feature size; overhang score; cavity and powder-removal checks; export settings. |
 
-Raw datasets and checkpoints should be stored in versioned external releases. This repository should contain schemas, download manifests, checksums, preprocessing code, and small test fixtures rather than untracked binary dumps.
+Raw datasets and checkpoints belong in versioned external releases. This repository should contain schemas, download manifests, checksums, preprocessing code, and small test fixtures.
 
 ## Integration Contract
 
@@ -111,23 +129,29 @@ Each integrated project must provide:
 - configuration files for every reported benchmark;
 - an adapter to the unified geometry and sample manifests;
 - one lightweight smoke test and, where required, one GPU regression test;
-- checkpoint and dataset manifests with checksums, rather than undocumented download links;
+- checkpoint and dataset manifests with checksums;
 - a minimal inference or optimization example with deterministic output;
 - explicit units, coordinate conventions, tensor ordering, and boundary conditions.
 
 ## Roadmap
 
 - [ ] **Foundation:** freeze schemas, coordinate conventions, units, and asymptotic-homogenization baselines.
-- [ ] **Geometry:** integrate PPL, PSL, TPMS-like, SPPM, and PETL generators behind a common API.
-- [ ] **Solvers:** migrate PH-Net, CGiNS, and GMT with shared preprocessing and evaluation.
-- [ ] **Design:** connect MIND, AutoMS, and MO-IHD to the same target/constraint specification.
-- [ ] **Benchmarks:** publish cross-family accuracy, speed, generalization, and manufacturability protocols.
-- [ ] **Applications:** release reproducible energy-absorption and multiscale design examples.
+- [ ] **Geometry:** integrate PPL, PSL, TPMS-like, and SPPM generators behind a common API.
+- [ ] **Dataset:** publish versioned manifests, split definitions, checksums, and benchmark fixtures.
+- [ ] **Solvers:** migrate PH-Net, SLASH / CGINS, and GMT with shared preprocessing and evaluation.
+- [ ] **Design:** connect MIND, AutoMS, and MO-IHD to the same target and constraint specification.
+- [ ] **Applications:** release reproducible energy-absorption, PETL, and multiscale design examples.
 
 ## Citation
 
-Please cite the individual paper(s) associated with the components you use. Machine-readable BibTeX entries will be maintained under `docs/citations/` as projects are integrated.
+Citation files for the projects in the map are maintained in [`docs/citations/`](docs/citations/). Use the paper entry for scientific claims and the software or dataset entry when citing a particular release. The citation index records projects whose canonical metadata is still forthcoming.
+
+Please cite the individual paper or software release associated with every component you use. To cite the umbrella repository itself, cite the repository URL and the commit or release tag used for your work.
 
 ## License
 
-The umbrella repository license will be finalized after the license audit for all incoming code and data. Until then, each linked standalone repository and publication retains its own license. Do not copy publisher PDFs or third-party datasets into this repository unless their redistribution terms explicitly permit it.
+The original documentation, schemas, configuration, and integration code in this repository are released under the [MIT License](LICENSE). See [`docs/THIRD_PARTY_NOTICES.md`](docs/THIRD_PARTY_NOTICES.md) for the current status of linked projects.
+
+The MIT License applies only to material distributed in this repository. Linked standalone projects, papers, datasets, checkpoints, logos, and third-party assets retain their own licenses and publication terms. Some linked projects currently use CC BY-NC 4.0, while others do not yet publish a code license. A link in this README does not grant permission to copy, modify, or redistribute those materials; check each upstream project before including it in another release.
+
+The LatticeVerse logo is a project mark and the root license does not grant trademark rights. If this repository later distributes an original dataset, figures, or other non-code material, that material should receive an explicit separate data or media license in its release metadata. The code license does not automatically cover those artifacts.
