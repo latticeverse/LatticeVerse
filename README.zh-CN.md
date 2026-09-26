@@ -47,7 +47,7 @@ LatticeVerse 是一组晶格设计论文及其实现的项目总仓库。它记�
 
 | 年份 / 期刊或会议 | 项目 | 项目贡献 | 资源 |
 |:--|:--|:--|:--|
-| 2023 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PPL** | 统一的参数化板晶格表示，支持直接四边形网格划分和基于水平集的形状优化，从而获得定制化的力学性能。 | [论文](https://doi.org/10.1016/j.addma.2023.103626) · [引用](docs/citations/ppl.bib) · 计划集成 |
+| 2023 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PPL** | 统一的参数化板晶格表示，支持直接四边形网格划分和基于水平集的形状优化，从而获得定制化的力学性能。 | [论文](https://doi.org/10.1016/j.addma.2023.103626) ·  [代码](https://github.com/latticeverse/ParametricPlateLattice) · [引用](docs/citations/ppl.bib) |
 | 2022 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PSL** | 基于骨架驱动的参数化壳晶格表示，能够控制拓扑和形态，并结合形状优化实现定制化弹性性能。 | [论文](https://doi.org/10.1016/j.addma.2022.103258) · [代码](https://github.com/latticeverse/ParametricShellLattice) · [引用](docs/citations/psl.bib) |
 | 2023 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **TPMS-like shell lattices** | 基于周期边界和类极小曲面构造的参数化壳晶格族，将可探索的性能空间扩展到经典 TPMS 解析公式之外。 | [论文](https://doi.org/10.1016/j.addma.2023.103779) · [代码](https://github.com/latticeverse/TPMS-Like) · [引用](docs/citations/tpms-like.bib) |
 | 2025 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **SPPM** | 使用 Wang 立方体规则和高斯核生成可制造的随机周期多孔微结构，在随机性和周期连通性之间取得平衡。 | [论文](https://doi.org/10.1016/j.addma.2025.104739) · [引用](docs/citations/sppm.bib) · 计划集成 |
@@ -71,7 +71,7 @@ LatticeVerse 是一组晶格设计论文及其实现的项目总仓库。它记�
 |:--|:--|:--|:--|
 | 2021 · [C&G](https://www.sciencedirect.com/journal/computers-and-graphics) | **Asymptotic Homogenization / Mechanical Property Profiles (AH / MPP)** | 确定性参考层，在明确的边界条件和材料约定下计算局部场、等效弹性属性、方向响应、强度相关性能曲线和最不利应力。 | [论文](https://doi.org/10.1016/j.cag.2021.07.021) · [代码](https://github.com/latticeverse/AsymptoticHomogenization) · [引用](docs/citations/ah-mpp.bib) |
 | 2022 · [AM](https://www.sciencedirect.com/journal/additive-manufacturing) | **PH-Net** | 无需标签训练的 3D CNN，为一般平行六面体晶胞预测微观位移场，并由此得到局部属性和均匀化后的等效属性。 | [论文](https://doi.org/10.1016/j.addma.2022.103237) · [代码](https://github.com/latticeverse/phnet) · [引用](docs/citations/ph-net.bib) |
-| 2025 · [arXiv](https://arxiv.org/abs/2506.17087) | **SLASH / CGINS** | 受预条件共轭梯度方法启发的稀疏、周期性神经求解器，采用多级结构，在高分辨率下实现物理一致的均匀化。 | [论文](https://arxiv.org/abs/2506.17087) · [引用](docs/citations/slash.bib) · 计划集成 |
+| 2025 · [arXiv](https://arxiv.org/abs/2506.17087) | **SLASH** | 受预条件共轭梯度方法启发的稀疏、周期性神经求解器，采用多级结构，在高分辨率下实现物理一致的均匀化。 | [论文](https://arxiv.org/abs/2506.17087) · [引用](docs/citations/slash.bib) · 计划集成 |
 | 2026 · [SIGGRAPH](https://s2026.siggraph.org/) | **GMT** | 几何多重网格 Transformer，将稀疏点 Transformer 模块与多重网格层级结合，用于高保真的弹性和热均匀化。 | [论文](https://arxiv.org/abs/2604.26518) · [代码](https://github.com/latticeverse/GMT) · [引用](docs/citations/gmt.bib) |
 
 对于每一个求解器，评估记录都应包含单位、坐标约定、张量排列顺序、边界条件、离散化方式、求解器容差、物理场误差和等效属性误差。只有在相同的评估规范（evaluation contract）下验证其性能结论后，生成的候选结构才能被接受。
@@ -102,7 +102,7 @@ LatticeVerse 是一组晶格设计论文及其实现的项目总仓库。它记�
 
 | 年份 / 期刊或会议 | 项目 | 项目贡献 | 资源 |
 |:--|:--|:--|:--|
-| 2026 | **MO-IHD** | 面向制造约束的逆均匀化流程，将可微悬垂、封闭腔体和粉末去除约束纳入优化，并通过渐进式 Pareto 前沿构建保留可行候选结构。 | 论文即将发布 · [引用](docs/citations/mo-ihd.bib) · 计划集成 |
+| 2026 · [JCAD](https://www.jcad.cn/)| **MAPLE** | 面向制造约束的逆均匀化流程，将可微悬垂、封闭腔体和粉末去除约束纳入优化，并通过渐进式 Pareto 前沿构建保留可行候选结构。 | [论文](https://www.jcad.cn/article/doi/10.3724/SP.J.1089.2026-00157) · [引用](docs/citations/mo-ihd.bib) · 计划集成 |
 
 输出是一组可制造的 Pareto 候选集，其中同时包含物理目标和制造可行性记录，可继续进行网格导出、制造和实验验证。制造约束属于优化规格的一部分，而不是最后阶段的修补步骤。
 
