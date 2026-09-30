@@ -10,7 +10,7 @@
 
 ## What this repository is
 
-LatticeVerse is an umbrella repository for a family of lattice-design papers and their implementations. It documents how the projects connect, defines shared data and integration conventions, and links to the standalone repositories that contain the executable research code.
+LatticeVerse is an umbrella repository for a family of lattice-design papers and their implementations.
 
 The repository follows one end-to-end path:
 
@@ -23,8 +23,6 @@ geometry modeling
 ```
 
 The common unit of exchange is a versioned lattice sample. A sample carries its geometry, material, physical fields, effective properties, design targets, optimization provenance, and manufacturing checks. This lets a generator propose a structure, a solver evaluate it, and a downstream application reproduce the decision.
-
-Unless a project is marked as integrated, this repository does not contain its full implementation. Use the linked project repository, release, or paper for the authoritative code and experimental details.
 
 ## How to read the research map
 
