@@ -116,7 +116,7 @@ LatticeVerse 是一组晶格设计论文及其实现的项目总仓库。它记�
 
 LatticeVerse 项目收录的研究工作和相关科研论文均在[吕琳](https://irc.cs.sdu.edu.cn/~lulin/index.html)教授的指导下完成，由[星宇](https://xing-yuu.github.io)负责总体规划、项目组织。
 
-特别感谢[孙炳腾](https://www.researchgate.net/scientific-contributions/Bingteng-Sun-2230064775)、[刘培庆博士](https://salver20.github.io)、许永来、[彭昊博士](https://penghao94.github.io)、[薛天扬](https://xty.im)、赵振元、李昊晨和[朱悦泽](https://scholar.google.com/citations?user=9sTr4QoAAAAJ&hl=en)，感谢他们在科研工作、方法设计、代码实现、实验验证和项目建设等方面提供的支持与贡献。
+特别感谢[孙炳腾](https://www.researchgate.net/scientific-contributions/Bingteng-Sun-2230064775)、[刘培庆博士](https://salver20.github.io)、[许永来](https://www.researchgate.net/scientific-contributions/Yonglai-Xu-2211973562)、[彭昊博士](https://penghao94.github.io)、[薛天扬](https://xty.im)、[赵振元](https://www.researchgate.net/scientific-contributions/Zhenyuan-Zhao-2345741537)、[李昊晨](https://www.researchgate.net/scientific-contributions/Haochen-Li-2267951103)和[朱悦泽](https://scholar.google.com/citations?user=9sTr4QoAAAAJ&hl=en)，感谢他们在科研工作、方法设计、代码实现、实验验证和项目建设等方面提供的支持与贡献。
 
 同时，感谢所有曾经提供代码、数据、实验结果、技术建议、测试反馈或其他形式帮助的合作者和开源贡献者。正是这些贡献，使不同研究工作的代码、数据和方法能够逐步连接起来，形成 LatticeVerse 项目。
 
