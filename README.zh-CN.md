@@ -94,7 +94,7 @@ LatticeVerse 是一组晶格设计论文及其实现的项目总仓库。它记�
 | 年份 / 期刊或会议 | 项目 | 项目贡献 | 资源 |
 |:--|:--|:--|:--|
 | 2025 · [C&S](https://www.sciencedirect.com/journal/computers-and-structures) | **Energy-absorbing PPL** | 面向应用的流程，将非线性仿真、MLP 代理模型和 NSGA-II 结合，在比吸能和峰值压溃力之间进行权衡。 | [论文](https://doi.org/10.1016/j.compstruc.2025.107880) · [引用](docs/citations/energy-absorbing-ppl.bib) · 计划集成 |
-| 2025 · [M&D](https://www.sciencedirect.com/journal/materials-and-design) | **PETL (Joint-Enhanced Truss Lattice)** | 参数化的节点增强策略，在桁架交汇处附近重新分配材料，以降低应力集中，并在应用工况下提升刚度和强度。 | [论文](https://doi.org/10.1016/j.matdes.2025.113969) · [引用](docs/citations/petl.bib) · 计划集成 |
+| 2025 · [M&D](https://www.sciencedirect.com/journal/materials-and-design) | **PETL (Joint-Enhanced Truss Lattice)** | 参数化的节点增强策略，在桁架交汇处附近重新分配材料，以降低应力集中，并在应用工况下提升刚度和强度。 | [论文](https://doi.org/10.1016/j.matdes.2025.113969) · [引用](docs/citations/petl.bib) · [代码](https://github.com/latticeverse/JointEnhancedTrussLattice) |
 
 这一分支从应用目标和高保真仿真协议开始。代理模型或 Pareto 搜索提出候选结构，非线性仿真和物理测试决定哪些候选结构可以进入已验证数据集。
 

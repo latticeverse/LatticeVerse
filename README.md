@@ -95,7 +95,7 @@ The input is a target property or a coupled set of physical targets. The output 
 | Year / Venue | Project | What it contributes | Resources |
 |:--|:--|:--|:--|
 | 2025 · [C&S](https://www.sciencedirect.com/journal/computers-and-structures) | **Energy-absorbing PPL** | An application pipeline that combines nonlinear simulation, an MLP surrogate, and NSGA-II to balance specific energy absorption against peak crushing force. | [Paper](https://doi.org/10.1016/j.compstruc.2025.107880) · [Citation](docs/citations/energy-absorbing-ppl.bib) · integration planned |
-| 2025 · [M&D](https://www.sciencedirect.com/journal/materials-and-design) | **PETL (Joint-Enhanced Truss Lattice)** | A parametric joint-enhancement strategy that redistributes material near truss intersections to reduce stress concentrations and improve stiffness and strength for application loading. | [Paper](https://doi.org/10.1016/j.matdes.2025.113969) · [Citation](docs/citations/petl.bib) · integration planned |
+| 2025 · [M&D](https://www.sciencedirect.com/journal/materials-and-design) | **PETL (Joint-Enhanced Truss Lattice)** | A parametric joint-enhancement strategy that redistributes material near truss intersections to reduce stress concentrations and improve stiffness and strength for application loading. | [Paper](https://doi.org/10.1016/j.matdes.2025.113969) · [Citation](docs/citations/petl.bib) · [Code](https://github.com/latticeverse/JointEnhancedTrussLattice) |
 
 This branch starts from an application objective and a high-fidelity simulation protocol. Surrogate or Pareto search proposes candidates; nonlinear simulation and physical testing determine whether they should enter the verified dataset.
 
