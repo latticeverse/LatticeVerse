@@ -123,8 +123,6 @@ We are especially grateful to [Bingteng Sun](https://www.researchgate.net/scient
 
 We also thank all collaborators and open-source contributors who have provided code, data, experimental results, technical advice, testing feedback, or other forms of assistance. Their contributions have helped connect the code, data, and methods from different research efforts and bring the LatticeVerse project together.
 
-LatticeVerse brings together multiple research directions and their independent implementations. Please refer to the corresponding papers, code repositories, and license files for details of each project’s authorship, contributions, and intellectual property rights.
-
 ## License
 
 The original documentation, schemas, configuration, and integration code in this repository are released under the [MIT License](LICENSE). See [`docs/THIRD_PARTY_NOTICES.md`](docs/THIRD_PARTY_NOTICES.md) for the current status of linked projects.
