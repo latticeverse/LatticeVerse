@@ -114,6 +114,17 @@ Citation files for the projects in the map are maintained in [`docs/citations/`]
 
 Please cite the individual paper or software release associated with every component you use. To cite the umbrella repository itself, cite the repository URL and the commit or release tag used for your work.
 
+
+## Acknowledgments
+
+The research work and associated papers included in LatticeVerse were completed under the guidance of [Professor Lin Lu](https://irc.cs.sdu.edu.cn/~lulin/index.html), with [Yu Xing](https://xing-yuu.github.io) responsible for the project’s overall planning and organization.
+
+We are especially grateful to [Bingteng Sun](https://www.researchgate.net/scientific-contributions/Bingteng-Sun-2230064775), [Dr. Peiqing Liu](https://salver20.github.io), Yonglai Xu, [Dr. Hao Peng](https://penghao94.github.io), [Tianyang Xue](https://xty.im), Zhenyuan Zhao, Haochen Li, and [Yueze Zhu](https://scholar.google.com/citations?user=9sTr4QoAAAAJ&hl=en) for their support and contributions to the research, method development, code implementation, experimental validation, and development of this project.
+
+We also thank all collaborators and open-source contributors who have provided code, data, experimental results, technical advice, testing feedback, or other forms of assistance. Their contributions have helped connect the code, data, and methods from different research efforts and bring the LatticeVerse project together.
+
+LatticeVerse brings together multiple research directions and their independent implementations. Please refer to the corresponding papers, code repositories, and license files for details of each project’s authorship, contributions, and intellectual property rights.
+
 ## License
 
 The original documentation, schemas, configuration, and integration code in this repository are released under the [MIT License](LICENSE). See [`docs/THIRD_PARTY_NOTICES.md`](docs/THIRD_PARTY_NOTICES.md) for the current status of linked projects.
