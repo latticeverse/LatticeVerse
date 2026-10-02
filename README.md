@@ -27,7 +27,7 @@ The common unit of exchange is a versioned lattice sample. A sample carries its 
 ## How to read the research map
 
 <p align="center">
-  <img src="assets/pipeline.svg" width="100%" alt="LatticeVerse research pipeline: geometry modeling, lattice dataset, physics simulation and evaluation, generation and optimization, and manufacturing-aware applications">
+  <img src="assets/framework.jpg" width="100%" alt="LatticeVerse research framework: geometry modeling, lattice dataset, physics simulation and evaluation, generation and optimization, and manufacturing-aware applications">
 </p>
 
 The map is read from left to right. Geometry Modeling produces parameterized lattice cells, which are organized into the Lattice Dataset. Physics Simulation computes local fields and effective properties, while Evaluation checks solver accuracy and candidate performance. These results provide the training and optimization inputs for three downstream branches: property-driven inverse design, application-oriented optimization, and manufacturing optimization. Accepted candidates can be verified, recorded, and fed back into the dataset for further expansion.
