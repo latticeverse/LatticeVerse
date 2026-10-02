@@ -2,27 +2,20 @@
 
   <img src="assets/logo.png" alt="LatticeVerse" width="350">
 
-  <p><strong>A unified research map and integration layer for computational lattice modeling, physics simulation, inverse design, and manufacturing-aware optimization.</strong></p>
+  <p><strong>From parameterized geometry to verified, manufacturable lattice designs.</strong></p>
+  <p>Connecting geometry modeling, physics simulation, inverse design, and manufacturing-aware optimization.</p>
 
 [中文](README.zh-CN.md) · [Research map](#how-to-read-the-research-map) · [Projects](#1-geometry-modeling) · [Lattice dataset](#2-lattice-dataset) · [Citations](#citation)
 
 </div>
 
-## What this repository is
+## What this project is
 
-LatticeVerse is an umbrella repository for a family of lattice-design papers and their implementations.
+LatticeVerse is an open research framework for building, understanding, and designing lattice materials across the full computational workflow. It connects controllable geometry families and stochastic porous structures with versioned datasets, physics-based homogenization, learned numerical solvers, generative inverse design, application-specific optimization, and manufacturing-aware search.
 
-The repository follows one end-to-end path:
+The project follows a traceable data flow: geometry becomes a canonical sample; simulation turns each sample into local fields and effective properties; evaluation establishes physical and numerical evidence; optimization uses these results to propose new structures; and verified candidates return to the dataset with their objectives, constraints, and provenance. This shared loop makes results easier to compare, reproduce, and extend across papers, codebases, and applications.
 
-```text
-geometry modeling
-  -> lattice dataset
-  -> physics simulation and evaluation
-  -> generation and optimization
-  -> verification, manufacturing, and dataset expansion
-```
-
-The common unit of exchange is a versioned lattice sample. A sample carries its geometry, material, physical fields, effective properties, design targets, optimization provenance, and manufacturing checks. This lets a generator propose a structure, a solver evaluate it, and a downstream application reproduce the decision.
+LatticeVerse serves as both a research framework and an integration layer. Each linked project retains its own implementation, paper, and license, while this repository provides a common language for connecting them through shared data manifests, evaluation conventions, citation records, and a path from research prototype to reproducible design and manufacturing.
 
 ## How to read the research map
 
